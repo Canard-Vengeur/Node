@@ -21,7 +21,7 @@ app.post('/users', function(req, res) {
     var query = db.query('INSERT INTO ACCOUNTS SET ?', user, function(err, result) {
       //Neat!
     });
-
+console.log(req.email);
 }); 
    
 app.listen(PORT, () => {

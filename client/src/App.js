@@ -40,25 +40,26 @@ function App() {
   // below function will be called when user 
 
   // click on submit button .
-
-  const handleSubmit=(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    data.append('email', JSON.stringify(email));
-    data.append('password', JSON.stringify(password)); 
-    console.log(data.get(email));
-  }
-
-  React.useEffect(() => {
-    fetch('/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data[email]),
-    })
-    .then((response) => response.json())
-  }, []);
-  
+    const data = {
+      email,
+      password
+    };
+    const fetchToUser = async () => {
+      fetch("/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(async (response) => console.log("response:", await response))
+        .catch((e) => console.log(e));
+    };
+    await fetchToUser();
+    console.log("ok");
+  };
   return (
     <form>
       <label>
